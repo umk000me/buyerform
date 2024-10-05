@@ -1,0 +1,201 @@
+
+<html >
+<head>
+    
+    <title>Multi-Step Buyer Information Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style> * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+       
+    }
+    
+    body {
+        background-color: #f3e70a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("form.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+    }
+    
+    .container {
+        background-color: transparent;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        max-width: 100%;
+       
+    }
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .form-card {
+        display: none; /* Hide all cards initially */
+        
+    }
+    
+    
+    #step1 { 
+        display: block; /* Show the first card on page load */
+    }
+    
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    
+    button:hover {
+        background-color: #218838;
+    }
+    
+    button[type="button"]:hover {
+        background-color: #36ed48;
+    }
+    
+    button[type="button"] {
+        background-color: #007bff;
+    }
+    
+    button + button {
+        margin-left: 10px;
+    }
+    
+    button[type="submit"] {
+        background-color: #007bff;
+    }
+    button[type="submit"].hover{
+        background-color: green;
+    }
+    .names{
+        color: #007bff;
+        text-shadow: 20px;
+    }
+    .names:hover{
+        color: black;
+    }
+    .heading{
+        color: #007bff;
+    }</style>
+</head>
+<body>
+    
+    <div class="container">
+        <h2 class="heading">Buyer Information Form</h2>
+        <form id="buyerForm" action="https://api.web3forms.com/submit" method="POST" style="background-color: transparent;" >
+            <input type="hidden" name="access_key" value="78a9f3e4-7771-4e7d-87a7-a7cf3397289e">
+            <!-- Step 1 -->
+            <div class="form-card" id="step1">
+                <h3>Step 1: Personal Information</h3>
+                <label class="names" for="name">Full Name</label>
+                <input type="text" id="name"  name="name" placeholder="Enter your full name" required>
+
+                <label class="names" for="email">Email</label>
+                <input type="email" id="email"  name="email" placeholder="Enter your email" required>
+
+                <button type="button" onclick="nextStep(2)">Next</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="form-card" id="step2" style="display: none;">
+                <h3>Step 2: Contact Information</h3>
+                <label class="names" for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label class="names" for="address">Address</label>
+                <textarea id="address" name="address" placeholder="Enter your address" rows="4" required></textarea>
+
+                <button type="button" onclick="prevStep(1)">Previous</button>
+                <button type="button" onclick="nextStep(3)">Next</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="form-card" id="step3" style="display: none;">
+                <h3>Step 3: Product Information</h3>
+                <label class="names" for="product">Product of Interest</label>
+                <select id="product" name="product">
+                    <option value="book1">Horror</option>
+                    <option value="book2">Mystery/Thriller</option>
+                    <option value="book3">Fantasy</option>
+                    <option value="book4">Science Fiction</option>
+                    <option value="book5">Historical Fiction</option>
+                </select>
+
+                <button type="button" onclick="prevStep(2)">Previous</button>
+                <button type="button" onclick="nextStep(4)">Next</button>
+            </div>
+
+            <!-- Step 4 (Additional) -->
+            <div class="form-card" id="step4" style="display: none;">
+                <h3>Step 4: Payment Information</h3>
+                <label class="names" for="paymentMethod">Preferred Payment Method</label>
+                <select id="paymentMethod" name="paymentMethod">
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="cash">Cash on Delivery</option>
+                </select>
+
+                <label class="names" for="paymentDetails">Payment Details</label>
+                <input type="text" id="paymentDetails" name="paymentDetails" placeholder="Enter payment details (optional)">
+
+                <button type="button" onclick="prevStep(3)">Previous</button>
+                <button type="button" onclick="nextStep(5)">Next</button>
+            </div>
+
+            <!-- Step 5 (Additional) -->
+            <div class="form-card" id="step5" style="display: none;">
+                <h3>Step 5: Final Review</h3>
+                <p class="last">Please review your information before submitting.
+                    Note: "The form will not submit unless all fields are filled out correctly. Please ensure all required fields are completed."
+                </p>
+
+                <button type="button" onclick="prevStep(4)">Previous</button>
+                
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+   <script >function nextStep(step) {
+    document.querySelectorAll('.form-card').forEach(card => {
+        card.style.display = 'none'; // Hide all cards
+    });
+    document.getElementById('step' + step).style.display = 'block'; // Show current card
+}
+
+function prevStep(step) {
+    document.querySelectorAll('.form-card').forEach(card => {
+        card.style.display = 'none'; // Hide all cards
+    });
+    document.getElementById('step' + step).style.display = 'block'; // Show previous card
+}
+
+// document.getElementById('buyerForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     alert("Data is submitted successfully! Thank you for your information.");
+//     document.body.innerHTML = "<h1 style='text-align: center;'>Thank you for submitting the form!</h1>";
+// });
+</script>
+</body>
+</html>
