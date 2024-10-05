@@ -1,8 +1,8 @@
 
 <html >
 <head>
-    
-    <link rel="stylesheet" href="style.css">
+    <title>Buyer information form </title>
+   
     <style> * {
         box-sizing: border-box;
         margin: 0;
@@ -53,32 +53,33 @@
         padding: 10px;
         margin: 10px 0;
         border-radius: 4px;
-        border: 1px solid #4ce305;
+       
         background-color: transparent;
     }
     input, textarea, select:hover {
         
-        border: 1px solid #f8f009;
+        border: 2px solid #51f809;
+        
        
     }
     
     button {
         padding: 10px 15px;
         border: none;
-        background-color: #28a745;
+       
         color: white;
-        cursor: pointer;
+        cursor: grab;
         border-radius: 4px;
         
     }
     
     button:hover {
         
-        background-color: transparent;
+        background-color: rgb(7, 255, 7);
     }
     
     button[type="button"]:hover {
-        background-color: transparent;
+        background-color: rgb(7, 255, 7);
         color: black;
     }
     
@@ -94,7 +95,7 @@
         background-color: #007bff;
     }
     button[type="submit"]:hover{
-        background-color: transparent;
+        background-color: rgb(7, 255, 7);
         color: black;
     }
     .names{
@@ -186,7 +187,8 @@
         </form>
     </div>
 
-   <script >function nextStep(step) {
+   <script >
+   function nextStep(step) {
     document.querySelectorAll('.form-card').forEach(card => {
         card.style.display = 'none'; // Hide all cards
     });
